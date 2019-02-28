@@ -1,0 +1,8 @@
+﻿  stdafx.cpp
+  CSVReader.cpp
+  DataProvider.cpp
+  PricePredictor.cpp
+  Generating code
+  All 234 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  PricePredictor.vcxproj -> G:\Work\WORK\projects\AutomatedTrading\Robotic league\PricePredictor\Release\PricePredictor.exe

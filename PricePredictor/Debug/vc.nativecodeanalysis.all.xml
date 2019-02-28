@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>g:\work\work\projects\automatedtrading\robotic league\pricepredictor\pricepredictor\</FILEPATH>
+      <FILENAME>csvreader.cpp</FILENAME>
+      <LINE>58</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>6296</DEFECTCODE>
+    <DESCRIPTION>Ill-defined for-loop.  Loop body only executed once.</DESCRIPTION>
+    <FUNCTION>CSVReader::DisplayPriceData</FUNCTION>
+    <DECORATED>?DisplayPriceData@CSVReader@@QAEXXZ</DECORATED>
+    <FUNCLINE>56</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>g:\work\work\projects\automatedtrading\robotic league\pricepredictor\pricepredictor\</FILEPATH>
+      <FILENAME>csvreader.cpp</FILENAME>
+      <LINE>60</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>6296</DEFECTCODE>
+    <DESCRIPTION>Ill-defined for-loop.  Loop body only executed once.</DESCRIPTION>
+    <FUNCTION>CSVReader::DisplayPriceData</FUNCTION>
+    <DECORATED>?DisplayPriceData@CSVReader@@QAEXXZ</DECORATED>
+    <FUNCLINE>56</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

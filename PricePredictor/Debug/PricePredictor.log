@@ -1,0 +1,14 @@
+﻿  TrendDetector.cpp
+  SterlingExtrapolation.cpp
+  SplineExtrapolation.cpp
+  Results.cpp
+  PricePredictor.cpp
+  ObjectHandler.cpp
+  NewtonExtrapolation.cpp
+  MultipleLinearRegression.cpp
+  DataProvider.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  CSVReader.cpp
+Results.obj : error LNK2001: unresolved external symbol "private: static class ObjectHandler * ObjectHandler::s_instance" (?s_instance@ObjectHandler@@0PAV1@A)
+G:\Work\WORK\projects\AutomatedTrading\Robotic league\PricePredictor\Debug\PricePredictor.exe : fatal error LNK1120: 1 unresolved externals

@@ -36,9 +36,6 @@
     <ClInclude Include="Results.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SplineExtrapolation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -63,6 +60,9 @@
     <ClInclude Include="PredictionAlgorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ObjHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -81,9 +81,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Results.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SplineExtrapolation.cpp">
@@ -108,6 +105,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PredictionAlgorithm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Results.h"
-#include "ObjectHandler.h"
+#include "ObjHandler.h"
 
 
 
@@ -15,10 +15,10 @@ Results::~Results()
 
 void Results::SetPredictions()
 {
-	AllPredictions[0][0] = ObjectHandler::Instance()->newtonExtrapolation->GetPrediction();
-	AllPredictions[0][1] = ObjectHandler::Instance()->stirlingExtrapolation->GetPrediction();
-	AllPredictions[0][2] = ObjectHandler::Instance()->splineExtrapolation->GetPrediction();
-	AllPredictions[0][3] = ObjectHandler::Instance()->multipleLinearRegression->GetPrediction();				  
+	AllPredictions[0][0] = ObjHandler::Instance()->newtonExtrapolation->GetPrediction();
+	AllPredictions[0][1] = ObjHandler::Instance()->stirlingExtrapolation->GetPrediction();
+	AllPredictions[0][2] = ObjHandler::Instance()->splineExtrapolation->GetPrediction();
+	AllPredictions[0][3] = ObjHandler::Instance()->multipleLinearRegression->GetPrediction();				  
 }
 
 void Results::SetAccuracies(double[4])

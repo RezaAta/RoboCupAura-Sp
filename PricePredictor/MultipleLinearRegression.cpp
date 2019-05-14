@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "MultipleLinearRegression.h"
-#include "ObjectHandler.h"
+#include "ObjHandler.h"
 
 
 MultipleLinearRegression::MultipleLinearRegression()
@@ -21,10 +21,10 @@ void MultipleLinearRegression::RunExtrapolation(vector<double> prices)
 	PredictionAlgorithm::RunExtrapolation(prices);
 
 	vector <double> x(prices.size());
+
 	for (int i = 0; i < prices.size(); i++)
-	{
 		x.push_back(i);
-	}
+	
 	LinearRegression linearRegression(x , prices, prices.size());
 	linearRegression.train(this->alpha, this->iterations);
 
@@ -35,20 +35,20 @@ void MultipleLinearRegression::RunExtrapolation(vector<double> prices)
 
 void MultipleLinearRegression::OptimizeRegressionParameters(double error)
 {
-	//OptimizeIterator(error, 100, 5);
+	OptimizeIterator(error, 200, 5);
 	OptimizeALpha(error, 0.1, 0.001);
 }
 
 
 void MultipleLinearRegression::OptimizeIterator(double error , double baseSteps , double precision)
 {
-	cout << "enteredOptimizer";
+	cout << "\nEntered Iterator Optimizer";
 	double newError = -1;
 	double pastError = -1;
 	double firstError = this->errorOfLastPrediction;
 	double steps = baseSteps;
 	bool stepsDirection = true;
-	this->iterations = 2000;
+	this->iterations = 100;
 	
 	while (true)
 	{
@@ -57,7 +57,7 @@ void MultipleLinearRegression::OptimizeIterator(double error , double baseSteps 
 		if ( newError!=-1)
 			pastError = newError;
 		
-		RunExtrapolation(ObjectHandler::Instance()->dataSetProvider->providedDataSet);
+		RunExtrapolation(ObjHandler::Instance()->dataSetProvider->regression.prices);
 		newError = this->errorOfLastPrediction;
 
 		cout << "\n" << prediction;
@@ -78,7 +78,6 @@ void MultipleLinearRegression::OptimizeIterator(double error , double baseSteps 
 
 }
 
-
 void MultipleLinearRegression::ChangeStepsDirection(double newError, double pastError, bool &iterationIncreasing, double &steps)
 {
 	if (newError >= pastError && pastError!= -1)
@@ -91,11 +90,10 @@ void MultipleLinearRegression::ChangeStepsDirection(double newError, double past
 	}
 }
 
-
 void MultipleLinearRegression::OptimizeALpha(double error, double baseSteps, double precision)
 {
 	{
-		cout << "enteredOptimizer";
+		cout << "\nEntered Alpha Optimizer";
 		double newError = -1;
 		double pastError = -1;
 		double firstError = this->errorOfLastPrediction;
@@ -110,7 +108,7 @@ void MultipleLinearRegression::OptimizeALpha(double error, double baseSteps, dou
 			if (newError != -1)
 				pastError = newError;
 
-			RunExtrapolation(ObjectHandler::Instance()->dataSetProvider->providedDataSet);
+			RunExtrapolation(ObjHandler::Instance()->dataSetProvider->regression.prices);
 			newError = this->errorOfLastPrediction;
 
 			cout << "\n" << prediction;
@@ -141,7 +139,7 @@ void MultipleLinearRegression::ProceedBySteps(double &parameter, bool forward, d
 	else if (!forward)
 		parameter = parameter - steps;
 
-	cout <<"\nIterations: "<< parameter;
+	cout <<"\nParameter: "<< parameter;
 }
 void MultipleLinearRegression::ProceedBySteps(int &parameter, bool forward, double steps)
 {

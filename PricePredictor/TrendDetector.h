@@ -16,16 +16,33 @@ public:
 	int beginingOfTrend, endOfTrend;
 	double slopeVariation;
 	
-
-	vector<vector<double>> splineDataSet, newtonDataSet, stirlingDataSet, regressionDataSet;
-
+	vector<vector<double>> splineLowCluster, newtonLowCluster, stirlingLowCluster, regressionLowCluster;
+	
 	TrendTypes DetectTrend(vector<double>);
+
+	void FindVarianceThreshold();
+	void UpdateClusters();
+
 	void GetNewDataSet();
+	
+
+	void PrintCluster();
 
 private:
+	void UpdateLowClusters();
+	void UpdateMediumClusters();
+	void UpdateHighClusters();
+
+
 	double CalculateSlope(double, double, double, double);
-	void CalculateSlopeVariation();
+	void CalculateSlopeVariation(vector<double>);
 	void CalculateVariance(vector<double>);
+	void TrimClusters(vector<vector<double>>&, int);
+
+
+	double slopeVarianceScale;
+	void UpdateSlopeVarianceScale();
+	void CalculateSlopeVarianceScale(vector<vector<double>> &);
 
 	double slope;
 	vector<double> slopes;

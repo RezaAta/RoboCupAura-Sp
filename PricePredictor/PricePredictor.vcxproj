@@ -23,19 +23,19 @@
     <ProjectGuid>{BA7A2DED-1649-48EB-9A41-98021A7A20E8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>PricePredictor</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -104,11 +104,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -138,6 +142,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +150,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CSVReader.h" />
@@ -152,7 +160,7 @@
     <ClInclude Include="LinearRegression.h" />
     <ClInclude Include="MultipleLinearRegression.h" />
     <ClInclude Include="NewtonExtrapolation.h" />
-    <ClInclude Include="ObjectHandler.h" />
+    <ClInclude Include="ObjHandler.h" />
     <ClInclude Include="PredictionAlgorithm.h" />
     <ClInclude Include="PricePredictor.h" />
     <ClInclude Include="ResultOptimizer.h" />
@@ -170,7 +178,7 @@
     <ClCompile Include="LinearRegression.cpp" />
     <ClCompile Include="MultipleLinearRegression.cpp" />
     <ClCompile Include="NewtonExtrapolation.cpp" />
-    <ClCompile Include="ObjectHandler.cpp" />
+    <ClCompile Include="ObjHandler.cpp" />
     <ClCompile Include="PredictionAlgorithm.cpp" />
     <ClCompile Include="PricePredictor.cpp" />
     <ClCompile Include="ResultOptimizer.cpp" />

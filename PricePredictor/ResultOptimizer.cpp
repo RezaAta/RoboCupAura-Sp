@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "ResultOptimizer.h"
-#include "ObjectHandler.h"
+#include "ObjHandler.h"
 
 
 ResultOptimizer::ResultOptimizer()
@@ -24,59 +24,59 @@ void ResultOptimizer::SetPredictions()
 	predictions.clear();
 	predictions.resize(2);
 
-	predictions[0] = ObjectHandler::Instance()->newtonExtrapolation->GetPrediction();
-	//predictions[1] = ObjectHandler::Instance()->splineExtrapolation->GetPrediction();
-	predictions[1] = ObjectHandler::Instance()->multipleLinearRegression->GetPrediction();
-	//predictions[2] = ObjectHandler::Instance()->stirlingExtrapolation->GetPrediction();
+	predictions[0] = ObjHandler::Instance()->newtonExtrapolation->GetPrediction();
+	//predictions[1] = ObjHandler::Instance()->splineExtrapolation->GetPrediction();
+	predictions[1] = ObjHandler::Instance()->multipleLinearRegression->GetPrediction();
+	//predictions[2] = ObjHandler::Instance()->stirlingExtrapolation->GetPrediction();
 }
 
 void ResultOptimizer::SetAccuracies()
 {
 	
-	if (ObjectHandler::Instance()->trendDetector->trendType == Linear)
+	if (ObjHandler::Instance()->trendDetector->trendType == Linear)
 	{
-		accuracies[Linear][0] = ((accuracies[Linear][0])*(ObjectHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade) +
-			(ObjectHandler::Instance()->newtonExtrapolation->MSEOfPastPrediction)) /
-			ObjectHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade + 1;
-		//accuracies[Linear][1] = ((accuracies[Linear][1])*(ObjectHandler::Instance()->splineExtrapolation->numberOfPredictionsMade) +
-		//	(ObjectHandler::Instance()->splineExtrapolation->MSEOfPastPrediction)) /
-		//	ObjectHandler::Instance()->splineExtrapolation->numberOfPredictionsMade + 1;
-		//accuracies[Linear][2] = ((accuracies[Linear][2])*(ObjectHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade) +
-		//	(ObjectHandler::Instance()->stirlingExtrapolation->MSEOfPastPrediction)) /
-		//	ObjectHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade + 1;
-		accuracies[Linear][1] = ((accuracies[Linear][1])*(ObjectHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade) +
-			(ObjectHandler::Instance()->multipleLinearRegression->MSEOfPastPrediction)) /
-			ObjectHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade + 1;
+		accuracies[Linear][0] = ((accuracies[Linear][0])*(ObjHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade) +
+			(ObjHandler::Instance()->newtonExtrapolation->MSEOfPastPrediction)) /
+			ObjHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade + 1;
+		//accuracies[Linear][1] = ((accuracies[Linear][1])*(ObjHandler::Instance()->splineExtrapolation->numberOfPredictionsMade) +
+		//	(ObjHandler::Instance()->splineExtrapolation->MSEOfPastPrediction)) /
+		//	ObjHandler::Instance()->splineExtrapolation->numberOfPredictionsMade + 1;
+		//accuracies[Linear][2] = ((accuracies[Linear][2])*(ObjHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade) +
+		//	(ObjHandler::Instance()->stirlingExtrapolation->MSEOfPastPrediction)) /
+		//	ObjHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade + 1;
+		accuracies[Linear][1] = ((accuracies[Linear][1])*(ObjHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade) +
+			(ObjHandler::Instance()->multipleLinearRegression->MSEOfPastPrediction)) /
+			ObjHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade + 1;
 	}
-	if (ObjectHandler::Instance()->trendDetector->trendType == NonLinear)
+	if (ObjHandler::Instance()->trendDetector->trendType == NonLinear)
 	{
-		accuracies[NonLinear][0] = ((accuracies[NonLinear][0])*(ObjectHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade)+
-			(ObjectHandler::Instance()->newtonExtrapolation->MSEOfPastPrediction)) /
-			ObjectHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade+1;
-		accuracies[NonLinear][1] = ((accuracies[NonLinear][1])*(ObjectHandler::Instance()->splineExtrapolation->numberOfPredictionsMade) +
-			(ObjectHandler::Instance()->splineExtrapolation->MSEOfPastPrediction)) /
-			ObjectHandler::Instance()->splineExtrapolation->numberOfPredictionsMade + 1;
-		accuracies[NonLinear][2] = ((accuracies[NonLinear][2])*(ObjectHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade) +
-			(ObjectHandler::Instance()->stirlingExtrapolation->MSEOfPastPrediction)) /
-			ObjectHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade + 1;
-		accuracies[NonLinear][3] = ((accuracies[NonLinear][3])*(ObjectHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade) +
-			(ObjectHandler::Instance()->multipleLinearRegression->MSEOfPastPrediction)) /
-			ObjectHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade + 1;
+		accuracies[NonLinear][0] = ((accuracies[NonLinear][0])*(ObjHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade)+
+			(ObjHandler::Instance()->newtonExtrapolation->MSEOfPastPrediction)) /
+			ObjHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade+1;
+		accuracies[NonLinear][1] = ((accuracies[NonLinear][1])*(ObjHandler::Instance()->splineExtrapolation->numberOfPredictionsMade) +
+			(ObjHandler::Instance()->splineExtrapolation->MSEOfPastPrediction)) /
+			ObjHandler::Instance()->splineExtrapolation->numberOfPredictionsMade + 1;
+		accuracies[NonLinear][2] = ((accuracies[NonLinear][2])*(ObjHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade) +
+			(ObjHandler::Instance()->stirlingExtrapolation->MSEOfPastPrediction)) /
+			ObjHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade + 1;
+		accuracies[NonLinear][3] = ((accuracies[NonLinear][3])*(ObjHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade) +
+			(ObjHandler::Instance()->multipleLinearRegression->MSEOfPastPrediction)) /
+			ObjHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade + 1;
 	}
-	if (ObjectHandler::Instance()->trendDetector->trendType == Random)
+	if (ObjHandler::Instance()->trendDetector->trendType == Random)
 	{
-		accuracies[Random][0] = ((accuracies[NonLinear][0])*(ObjectHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade) +
-			(ObjectHandler::Instance()->newtonExtrapolation->MSEOfPastPrediction)) /
-			ObjectHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade + 1;
-		//accuracies[Random][1] = ((accuracies[NonLinear][1])*(ObjectHandler::Instance()->splineExtrapolation->numberOfPredictionsMade) +
-		//	(ObjectHandler::Instance()->splineExtrapolation->MSEOfPastPrediction)) /
-		//	ObjectHandler::Instance()->splineExtrapolation->numberOfPredictionsMade + 1;
-		accuracies[Random][1] = ((accuracies[NonLinear][1])*(ObjectHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade) +
-			(ObjectHandler::Instance()->multipleLinearRegression->MSEOfPastPrediction)) /
-			ObjectHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade + 1;
-		//accuracies[Random][2] = ((accuracies[NonLinear][2])*(ObjectHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade) +
-		//	(ObjectHandler::Instance()->stirlingExtrapolation->MSEOfPastPrediction)) /
-		//	ObjectHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade + 1;
+		accuracies[Random][0] = ((accuracies[NonLinear][0])*(ObjHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade) +
+			(ObjHandler::Instance()->newtonExtrapolation->MSEOfPastPrediction)) /
+			ObjHandler::Instance()->newtonExtrapolation->numberOfPredictionsMade + 1;
+		//accuracies[Random][1] = ((accuracies[NonLinear][1])*(ObjHandler::Instance()->splineExtrapolation->numberOfPredictionsMade) +
+		//	(ObjHandler::Instance()->splineExtrapolation->MSEOfPastPrediction)) /
+		//	ObjHandler::Instance()->splineExtrapolation->numberOfPredictionsMade + 1;
+		accuracies[Random][1] = ((accuracies[NonLinear][1])*(ObjHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade) +
+			(ObjHandler::Instance()->multipleLinearRegression->MSEOfPastPrediction)) /
+			ObjHandler::Instance()->multipleLinearRegression->numberOfPredictionsMade + 1;
+		//accuracies[Random][2] = ((accuracies[NonLinear][2])*(ObjHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade) +
+		//	(ObjHandler::Instance()->stirlingExtrapolation->MSEOfPastPrediction)) /
+		//	ObjHandler::Instance()->stirlingExtrapolation->numberOfPredictionsMade + 1;
 	}
 
 }
@@ -87,17 +87,16 @@ void ResultOptimizer::OptimizeFinalResult()
 	double totalWeight = 0;
 	for (int i = 0; i < 2; i++)
 	{
-		totalWeight = totalWeight + 1/accuracies[ObjectHandler::Instance()->trendDetector->trendType][i];
+		totalWeight = totalWeight + 1/accuracies[ObjHandler::Instance()->trendDetector->trendType][i];
 	}
 	//cout << "\ntotal weight:" << totalWeight;
 	if (totalWeight != 0)
 	{
 		for (int i = 0; i < 2; i++)
 		{
-			finalPrediction = finalPrediction + predictions[i] * ((1/accuracies[ObjectHandler::Instance()->trendDetector->trendType][i]) / totalWeight);
+			finalPrediction = finalPrediction + predictions[i] * ((1/accuracies[ObjHandler::Instance()->trendDetector->trendType][i]) / totalWeight);
 			//cout << "\nfinal prediction:" << finalPrediction;
 		}
-
 	}
 }
 

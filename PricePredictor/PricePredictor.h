@@ -1,9 +1,8 @@
 #pragma once
 
-#include <ioStream>
 #include <fstream>
 #include <string>
-#include "ObjectHandler.h"
+#include "ObjHandler.h"
 
 using namespace std;
 
@@ -12,8 +11,13 @@ class PricePredictor
 public:
 
 };
-
-void ManualAddressInput(std::vector<std::string> &addresses);
-void writeTextFile(string);
+void OutputDataEntry(int numberOfFiles, std::vector<std::string> &addresses, std::vector<std::string> &outputAddresses);
+void SetDataEntry(std::string &inputAddress, int &numberOfFiles, std::vector<std::string> &addresses, std::vector<std::string> &outputAddresses);
+void PrepareAllFiles(std::string &inputAddress, int &numberOfFiles, std::vector<std::string> &addresses, std::vector<std::string> &outputAddresses);
+void SetErrorVarsAndPrediction(double &prediction, double &error, double realPrice, double &ErrorSum, double &maxErr);
+void PrintErrorSums(double ErrorSum);
+fstream OpenFileByAddress(std::string & inputAddress);
+void WriteTextFile(string, string);
 
 void RunAllPredictionAlgorithms(std::vector<double> &dataSet);
+void PrepareAddress(string &);

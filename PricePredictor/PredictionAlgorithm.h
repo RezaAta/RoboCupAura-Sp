@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -9,13 +10,12 @@ public:
 	PredictionAlgorithm();
 	~PredictionAlgorithm();
 
-
 	double prediction;
 	double MSEOfPastPrediction;
 	int numberOfPredictionsMade;
 	double ErrorSum;
 	bool serie;
-	double previouslyRealPrice;
+	double previousRealPrice;
 	double errorOfLastPrediction;
 
 	vector <vector<double>> lowErrorDataSets;
@@ -27,5 +27,6 @@ public:
 	virtual void RunExtrapolation(vector<double>);
 	
 	void ClassifyData(double, double , vector<double>);
+	void PrintClusters();
 	
 };

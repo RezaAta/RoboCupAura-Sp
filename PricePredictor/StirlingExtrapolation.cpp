@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "StirlingExtrapolation.h"
-#include "ObjectHandler.h"
+#include "ObjHandler.h"
 
 
 StirlingExtrapolation::StirlingExtrapolation()

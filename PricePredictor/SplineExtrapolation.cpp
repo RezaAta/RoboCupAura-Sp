@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "SplineExtrapolation.h"
-#include "ObjectHandler.h"
+#include "ObjHandler.h"
 
 SplineExtrapolation::SplineExtrapolation()
 	:PredictionAlgorithm()

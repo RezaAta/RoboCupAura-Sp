@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "NewtonExtrapolation.h"
-#include "ObjectHandler.h"
+#include "ObjHandler.h"
 
 NewtonExtrapolation::NewtonExtrapolation()
 	:PredictionAlgorithm()
@@ -37,7 +37,7 @@ void NewtonExtrapolation::RunForwardExtrapolation(vector<double> prices)
 	PredictionAlgorithm::RunExtrapolation(prices);
 
 	// Number of values given
-	int n = ObjectHandler::Instance()->dataSetProvider->lengthOfProvidedDataSet;
+	int n = ObjHandler::Instance()->dataSetProvider->newton.length;
 
 	// y[][] is used for difference table
 	// with y[][0] used for input
@@ -81,7 +81,7 @@ void NewtonExtrapolation::RunBackwardExtrapolation(vector<double> prices)
 	PredictionAlgorithm::RunExtrapolation(prices);
 
 	// Number of values given 
-	int n = ObjectHandler::Instance()->dataSetProvider->lengthOfProvidedDataSet;
+	int n = ObjHandler::Instance()->dataSetProvider->newton.length;
 
 	// y[][] is used for difference table
 	// with y[][0] used for input
@@ -108,17 +108,6 @@ void NewtonExtrapolation::RunBackwardExtrapolation(vector<double> prices)
 
 	// Value to interpolate at 
 	double value = prices.size();
-
-	//// initializing u and sum 
-	//double sum = y[0][0];
-	//double u = (value);
-	//for (int i = 1; i < n; i++)
-	//{
-	//	sum = sum + (CalculateU(u, i) * y[0][i]) / fact(i);
-	//}
-
-	// y[][] is used for difference  
-	// table and y[][0] used for input 
 
 	// Initializing u and sum 
 	double sum = y[n - 1][0];

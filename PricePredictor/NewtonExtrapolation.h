@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <iomanip>
 #include "PredictionAlgorithm.h"
 
 //using namespace std;

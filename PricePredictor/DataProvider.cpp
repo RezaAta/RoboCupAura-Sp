@@ -1,52 +1,99 @@
 #include "stdafx.h"
 #include "DataProvider.h"
+#include "ObjHandler.h"
 
 
 DataProvider::DataProvider(int lengthOfProvidedDataSet)
 {
-	this->lengthOfProvidedDataSet = lengthOfProvidedDataSet;
-	numberOfDataSet = 0;
-	beginingOfDataSet = 0;
-	endOfDataSet = 0;
-	lastPredictionRealPrice = -1;
-	dataSetEnded = false;
-}
+	spline.numberOfDataSet = 0;
+	newton.numberOfDataSet = 0;
+	regression.numberOfDataSet = 0;
+	stirling.numberOfDataSet = 0;
+	trend.numberOfDataSet = 0;
 
+	newton.lastElementIndex = 0;
+	stirling.lastElementIndex = 0;
+	regression.lastElementIndex = 0;
+	trend.lastElementIndex = 0;
+	
+
+	lastPredictionRealPrice = -1;
+	allDataSetsEnded = false;
+}
 
 DataProvider::~DataProvider()
 {
 
 }
 
-void DataProvider::ProvideNewDataSet(vector<vector<double>> prices, int steps)
+void DataProvider::ProvideAllNewDataSets()
+{
+	ProvideTrendDataSet();
+	ProvideNewtonDataSet();
+	ProvideRegressionDataSet();
+	ProvideStirlingDataSet();
+}
+	void DataProvider::ProvideNewtonDataSet()
+	{
+		newton.length = 30;
+		ProvideDataSet(ObjHandler::Instance()->fileReader->stockPrices, 1, 0 , newton);
+	}
+
+	void DataProvider::ProvideRegressionDataSet()
+	{
+		regression.length = 2;
+		ProvideDataSet(ObjHandler::Instance()->fileReader->stockPrices,1, 28, regression);
+	}
+
+	void DataProvider::ProvideStirlingDataSet()
+	{
+		stirling.length = 10;
+		ProvideDataSet(ObjHandler::Instance()->fileReader->stockPrices,1, 20, stirling);
+	}
+
+	void DataProvider::ProvideTrendDataSet()
+	{
+		trend.length = 30;
+		ProvideDataSet(ObjHandler::Instance()->fileReader->stockPrices, 1, 0, trend);
+	}
+
+void DataProvider::ProvideDataSet(vector<vector<double>> prices, int steps, int shift, DataSet &dataSet)
 {
 	
-	if(endOfDataSet != 0)
-		lastPredictionRealPrice = prices[endOfDataSet][4];
-	
-	
-	beginingOfDataSet = steps * numberOfDataSet;
-	endOfDataSet = beginingOfDataSet + lengthOfProvidedDataSet - 1;
-	if (endOfDataSet >= prices.size() - 1)
-		dataSetEnded = true;
+	if (dataSet.lastElementIndex != 0)
+		lastPredictionRealPrice = prices[dataSet.lastElementIndex][4];
 
-	providedDataSet.clear();
-	providedDataSet.resize(lengthOfProvidedDataSet);
+	dataSet.firstElementIndex = (steps * dataSet.numberOfDataSet) + shift;
+	dataSet.lastElementIndex = dataSet.firstElementIndex + dataSet.length - 1;
 
-	int i = 0;
-	while(true)
+	if (dataSet.lastElementIndex >= prices.size() - 1)
+		allDataSetsEnded = true;
+
+	dataSet.prices.clear();
+	dataSet.prices.resize(dataSet.length);
+	
+	for (int i = 0; !(i >= dataSet.length);)
 	{
-		if (i >= lengthOfProvidedDataSet)
-			break;
-		providedDataSet[i] = prices[beginingOfDataSet][0];// 4 is equal to the close price  in the prices vector
+		//providedDataSet[i] = prices[beginingOfDataSet][0];// 4 is equal to the close price  in the prices vector
+		//i++;
+		//if (i >= lengthOfProvidedDataSet)
+		//	break;
+		dataSet.prices[i] = prices[dataSet.firstElementIndex][4];
 		i++;
-		if (i >= lengthOfProvidedDataSet)
+		if (i >= dataSet.length)
 			break;
-		providedDataSet[i] = prices[beginingOfDataSet][4];
-		i++;
-		if (i >= lengthOfProvidedDataSet)
-			break;
-		beginingOfDataSet++;
+		dataSet.firstElementIndex++;
 	}
-	numberOfDataSet++;
+	dataSet.numberOfDataSet++;
+}
+
+
+void DataProvider::ResetDataProvider()
+{
+	//numberOfDataSet = 0;
+	lastPredictionRealPrice = -1;
+}
+
+DataSet::DataSet()
+{
 }
